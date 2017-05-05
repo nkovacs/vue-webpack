@@ -1,15 +1,15 @@
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Hello from '@/components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Vue from 'vue'{{semi}}
+import Router from 'vue-router'{{semi}}
+import Hello from '@/components/Hello'{{semi}}
 
-Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use(Router){{semi}}
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  ]{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{indent 0 ~}}  export default new Router({
+{{indent 1 ~}}    routes: [
+{{indent 2 ~}}      {
+{{indent 3 ~}}        path: '/',
+{{indent 3 ~}}        name: 'Hello',
+{{indent 3 ~}}        component: Hello,
+{{indent 2 ~}}      },
+{{indent 1 ~}}    ],
+{{indent 0 ~}}  }){{semi}}

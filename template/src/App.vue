@@ -1,34 +1,34 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+{{indent 1 ~}}  <div id="app">
+{{indent 2 ~}}    <img src="./assets/logo.png">
     {{#router}}
-    <router-view></router-view>
+{{indent 2 ~}}    <router-view></router-view>
     {{else}}
-    <hello></hello>
+{{indent 2 ~}}    <hello></hello>
     {{/router}}
-  </div>
+{{indent 1 ~}}  </div>
 </template>
 
 <script>
 {{#unless router}}
-import Hello from './components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Hello from './components/Hello'{{semi}}
 
 {{/unless}}
-export default {
-  name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
-  components: {
-    Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}
-}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{indent 0 ~}}  export default {
+{{indent 1 ~}}    name: 'app'{{#router}},{{else}},
+{{indent 1 ~}}    components: {
+{{indent 2 ~}}      Hello,
+{{indent 1 ~}}    },{{/router}}
+{{indent 0 ~}}  }{{semi}}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+{{indent 0 ~}}  #app {
+{{indent 1 ~}}    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+{{indent 1 ~}}    -webkit-font-smoothing: antialiased;
+{{indent 1 ~}}    -moz-osx-font-smoothing: grayscale;
+{{indent 1 ~}}    text-align: center;
+{{indent 1 ~}}    color: #2c3e50;
+{{indent 1 ~}}    margin-top: 60px;
+{{indent 0 ~}}  }
 </style>

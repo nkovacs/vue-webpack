@@ -6,6 +6,17 @@ module.exports = {
       }
 
       return options.inverse(this);
+    },
+    "semi": function() {
+      return this.lintConfig === 'go' ? '' : ';';
+    },
+    "indent": function(count, options) {
+      if (!options) {
+        options = count;
+        count = 1;
+      }
+      var indent = this.lintConfig === 'go' ? '\t' : '    ';
+      return indent.repeat(count);
     }
   },
   "prompts": {
@@ -54,14 +65,14 @@ module.exports = {
       "message": "Pick an ESLint preset",
       "choices": [
         {
-          "name": "Standard (https://github.com/feross/standard)",
-          "value": "standard",
-          "short": "Standard"
+          "name": "4 space + semicolon",
+          "value": "4space;",
+          "short": "4space;"
         },
         {
-          "name": "Airbnb (https://github.com/airbnb/javascript)",
-          "value": "airbnb",
-          "short": "Airbnb"
+          "name": "Go",
+          "value": "go",
+          "short": "Go"
         },
         {
           "name": "none (configure it yourself)",
@@ -81,6 +92,8 @@ module.exports = {
   },
   "filters": {
     ".eslintrc.js": "lint",
+    ".eslintrc-build.js": "lint",
+    "**/.eslintrc.js": "lint",
     ".eslintignore": "lint",
     "config/test.env.js": "unit || e2e",
     "test/unit/**/*": "unit",

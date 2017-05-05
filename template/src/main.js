@@ -2,25 +2,25 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 {{/if_eq}}
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import App from './App'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Vue from 'vue'{{semi}}
+import App from './App'{{semi}}
 {{#router}}
-import router from './router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import router from './router'{{semi}}
 {{/router}}
 
-Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.config.productionTip = false{{semi}}
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
+{{indent 0 ~}}  new Vue({
+{{indent 1 ~}}    el: '#app',
   {{#router}}
-  router,
+{{indent 1 ~}}    router,
   {{/router}}
   {{#if_eq build "runtime"}}
-  render: h => h(App){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+{{indent 1 ~}}    render: h => h(App),
   {{/if_eq}}
   {{#if_eq build "standalone"}}
-  template: '<App/>',
-  components: { App }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+{{indent 1 ~}}    template: '<App/>',
+{{indent 1 ~}}    components: { App },
   {{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{indent 0 ~}}  }){{semi}}

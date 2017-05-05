@@ -1,11 +1,11 @@
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Hello from '@/components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{indent 0 ~}}  import Vue from 'vue'{{semi}}
+{{indent 0 ~}}  import Hello from '@/components/Hello'{{semi}}
 
-describe('Hello.vue', () => {
-  it('should render correct contents', () => {
-    const Constructor = Vue.extend(Hello){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    const vm = new Constructor().$mount(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .to.equal('Welcome to Your Vue.js App'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{indent 0 ~}}  describe('Hello.vue', function () {
+{{indent 1 ~}}    it('should render correct contents', function () {
+{{indent 2 ~}}      const Constructor = Vue.extend(Hello){{semi}}
+{{indent 2 ~}}      const vm = new Constructor().$mount(){{semi}}
+{{indent 2 ~}}      expect(vm.$el.querySelector('.hello h1').textContent).
+{{indent 3 ~}}        to.equal('Welcome to Your Vue.js App'){{semi}}
+{{indent 1 ~}}    }){{semi}}
+{{indent 0 ~}}  }){{semi}}

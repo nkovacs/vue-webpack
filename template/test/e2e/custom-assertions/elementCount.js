@@ -6,21 +6,22 @@
 //
 // for how to write custom assertions see
 // http://nightwatchjs.org/guide#writing-custom-assertions
-exports.assertion = function (selector, count) {
-  this.message = 'Testing if element <' + selector + '> has count: ' + count{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  this.expected = count{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  this.pass = function (val) {
-    return val === this.expected{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  }
-  this.value = function (res) {
-    return res.value{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  }
-  this.command = function (cb) {
-    var self = this{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    return this.api.execute(function (selector) {
-      return document.querySelectorAll(selector).length{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    }, [selector], function (res) {
-      cb.call(self, res){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  }
-}
+
+/* eslint-env browser */
+
+{{indent 0 ~}}  exports.assertion = function elementCount(selector, count) {
+{{indent 1 ~}}    this.message = 'Testing if element <' + selector + '> has count: ' + count{{semi}}
+{{indent 1 ~}}    this.expected = count{{semi}}
+{{indent 1 ~}}    this.pass = function pass(val) {
+{{indent 2 ~}}      return val === this.expected{{semi}}
+{{indent 1 ~}}    }{{semi}}
+{{indent 1 ~}}    this.value = function value(res) {
+{{indent 2 ~}}      return res.value{{semi}}
+{{indent 1 ~}}    }{{semi}}
+{{indent 1 ~}}    this.command = function command(cb) {
+{{indent 2 ~}}      var self = this{{semi}}
+{{indent 2 ~}}      return this.api.execute(sel => document.querySelectorAll(sel).length, [selector], (res) => {
+{{indent 3 ~}}        cb.call(self, res){{semi}}
+{{indent 2 ~}}      }){{semi}}
+{{indent 1 ~}}    }{{semi}}
+{{indent 0 ~}}  }{{semi}}
