@@ -11,11 +11,11 @@
 
 <script>
 {{#unless router}}
-import Hello from './components/Hello'{{semi}}
+import Hello from {{string './components/Hello'}}{{semi}}
 
 {{/unless}}
 {{indent 0 ~}}  export default {
-{{indent 1 ~}}    name: 'app'{{#router}},{{else}},
+{{indent 1 ~}}    name: {{string 'app'}}{{#router}},{{else}},
 {{indent 1 ~}}    components: {
 {{indent 2 ~}}      Hello,
 {{indent 1 ~}}    },{{/router}}

@@ -17,7 +17,13 @@ module.exports = {
       }
       var indent = this.lintConfig === 'go' ? '\t' : '    ';
       return indent.repeat(count);
-    }
+    },
+    "string": function(s) {
+      if (this.lintConfig === 'go') {
+        return '"' + s.replace('"', '\\"') + '"';
+      }
+      return '\'' + s.replace("'", "\\'") + '\'';
+    },
   },
   "prompts": {
     "name": {

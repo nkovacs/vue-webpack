@@ -1,5 +1,5 @@
 {{indent 0 ~}}  module.exports = {
-{{indent 1 ~}}    extends: 'nkovacs/mocha.js',
+{{indent 1 ~}}    extends: {{string 'nkovacs/mocha.js'}},
 {{indent 1 ~}}    env: {
 {{indent 2 ~}}      mocha: true,
 {{indent 1 ~}}    },

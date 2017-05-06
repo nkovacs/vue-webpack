@@ -22,10 +22,10 @@
 
 <script>
 {{indent 0 ~}}  export default {
-{{indent 1 ~}}    name: 'hello',
+{{indent 1 ~}}    name: {{string 'hello'}},
 {{indent 1 ~}}    data() {
 {{indent 2 ~}}      return {
-{{indent 3 ~}}        msg: 'Welcome to Your Vue.js App',
+{{indent 3 ~}}        msg: {{string 'Welcome to Your Vue.js App'}},
 {{indent 2 ~}}      }{{semi}}
 {{indent 1 ~}}    },
 {{indent 0 ~}}  }{{semi}}

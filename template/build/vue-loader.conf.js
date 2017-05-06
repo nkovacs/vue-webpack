@@ -1,6 +1,6 @@
-var utils = require('./utils'){{semi}}
-var config = require('../config'){{semi}}
-var isProduction = process.env.NODE_ENV === 'production'{{semi}}
+var utils = require({{string './utils'}}){{semi}}
+var config = require({{string '../config'}}){{semi}}
+var isProduction = process.env.NODE_ENV === {{string 'production'}}{{semi}}
 
 {{indent 0 ~}}  module.exports = {
 {{indent 1 ~}}    loaders: utils.cssLoaders({

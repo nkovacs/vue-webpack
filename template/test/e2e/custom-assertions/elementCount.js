@@ -10,7 +10,7 @@
 /* eslint-env browser */
 
 {{indent 0 ~}}  exports.assertion = function elementCount(selector, count) {
-{{indent 1 ~}}    this.message = 'Testing if element <' + selector + '> has count: ' + count{{semi}}
+{{indent 1 ~}}    this.message = {{string 'Testing if element <'}} + selector + {{string '> has count: '}} + count{{semi}}
 {{indent 1 ~}}    this.expected = count{{semi}}
 {{indent 1 ~}}    this.pass = function pass(val) {
 {{indent 2 ~}}      return val === this.expected{{semi}}
