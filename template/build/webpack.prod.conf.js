@@ -16,15 +16,15 @@ var OptimizeCSSPlugin = require({{string 'optimize-css-assets-webpack-plugin'}})
 {{indent 0 ~}}  var webpackConfig = merge(baseWebpackConfig, {
 {{indent 1 ~}}    module: {
 {{indent 2 ~}}      rules: utils.styleLoaders({
-{{indent 3 ~}}        sourceMap: config.build.productionSourceMap,
-{{indent 3 ~}}        extract: true,
+{{indent 3 ~}}        sourceMap: {{#if_eq lintConfig "go"}}{{/if_eq}}config.build.productionSourceMap,
+{{indent 3 ~}}        extract: {{#if_eq lintConfig "go"}}  {{/if_eq}}true,
 {{indent 2 ~}}      }),
 {{indent 1 ~}}    },
 {{indent 1 ~}}    devtool: config.build.productionSourceMap ? {{string '#source-map'}} : false,
-{{indent 1 ~}}    output: {
-{{indent 2 ~}}      path: config.build.assetsRoot,
-{{indent 2 ~}}      filename: utils.assetsPath({{string 'js/[name].[chunkhash].js'}}),
-{{indent 2 ~}}      chunkFilename: utils.assetsPath({{string 'js/[id].[chunkhash].js'}}),
+{{indent 1 ~}}    output: {{#if_eq lintConfig "go"}} {{/if_eq}}{
+{{indent 2 ~}}      path: {{#if_eq lintConfig "go"}}         {{/if_eq}}config.build.assetsRoot,
+{{indent 2 ~}}      filename: {{#if_eq lintConfig "go"}}     {{/if_eq}}utils.assetsPath({{string 'js/[name].[chunkhash].js'}}),
+{{indent 2 ~}}      chunkFilename: {{#if_eq lintConfig "go"}}{{/if_eq}}utils.assetsPath({{string 'js/[id].[chunkhash].js'}}),
 {{indent 1 ~}}    },
 {{indent 1 ~}}    plugins: [
 {{indent 2 ~}}      // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -55,12 +55,12 @@ var OptimizeCSSPlugin = require({{string 'optimize-css-assets-webpack-plugin'}})
 {{indent 3 ~}}        filename: {{#if_or unit e2e}}process.env.NODE_ENV === {{string 'testing'}} ?
 {{indent 4 ~}}          {{string 'index.html'}} :
 {{indent 4 ~}}          {{/if_or}}config.build.index,
-{{indent 3 ~}}        template: {{string 'index.html'}},
-{{indent 3 ~}}        inject: true,
-{{indent 3 ~}}        minify: {
-{{indent 4 ~}}          removeComments: true,
-{{indent 4 ~}}          collapseWhitespace: true,
-{{indent 4 ~}}          removeAttributeQuotes: true,
+{{indent 3 ~}}        template: {{#if_eq lintConfig "go"}}{{/if_eq}}{{string 'index.html'}},
+{{indent 3 ~}}        inject: {{#if_eq lintConfig "go"}}  {{/if_eq}}true,
+{{indent 3 ~}}        minify: {{#if_eq lintConfig "go"}}  {{/if_eq}}{
+{{indent 4 ~}}          removeComments: {{#if_eq lintConfig "go"}}       {{/if_eq}}true,
+{{indent 4 ~}}          collapseWhitespace: {{#if_eq lintConfig "go"}}   {{/if_eq}}true,
+{{indent 4 ~}}          removeAttributeQuotes: {{#if_eq lintConfig "go"}}{{/if_eq}}true,
 {{indent 4 ~}}          // more options:
 {{indent 4 ~}}          // https://github.com/kangax/html-minifier#options-quick-reference
 {{indent 3 ~}}        },
@@ -69,8 +69,8 @@ var OptimizeCSSPlugin = require({{string 'optimize-css-assets-webpack-plugin'}})
 {{indent 2 ~}}      }),
 {{indent 2 ~}}      // split vendor js into its own file
 {{indent 2 ~}}      new webpack.optimize.CommonsChunkPlugin({
-{{indent 3 ~}}        name: {{string 'vendor'}},
-{{indent 3 ~}}        minChunks: function minChunks(module) {
+{{indent 3 ~}}        name: {{#if_eq lintConfig "go"}}     {{/if_eq}}{{string 'vendor'}},
+{{indent 3 ~}}        minChunks: {{#if_eq lintConfig "go"}}{{/if_eq}}function minChunks(module) {
 {{indent 4 ~}}          // any required modules inside node_modules are extracted to vendor
 {{indent 4 ~}}          return (
 {{indent 5 ~}}            module.resource &&
@@ -84,15 +84,15 @@ var OptimizeCSSPlugin = require({{string 'optimize-css-assets-webpack-plugin'}})
 {{indent 2 ~}}      // extract webpack runtime and module manifest to its own file in order to
 {{indent 2 ~}}      // prevent vendor hash from being updated whenever app bundle is updated
 {{indent 2 ~}}      new webpack.optimize.CommonsChunkPlugin({
-{{indent 3 ~}}        name: {{string 'manifest'}},
-{{indent 3 ~}}        chunks: [{{string 'vendor'}}],
+{{indent 3 ~}}        name: {{#if_eq lintConfig "go"}}  {{/if_eq}}{{string 'manifest'}},
+{{indent 3 ~}}        chunks: {{#if_eq lintConfig "go"}}{{/if_eq}}[{{string 'vendor'}}],
 {{indent 2 ~}}      }),
 {{indent 2 ~}}      // copy custom static assets
 {{indent 2 ~}}      new CopyWebpackPlugin([
 {{indent 3 ~}}        {
-{{indent 4 ~}}          from: path.resolve(__dirname, {{string '../static'}}),
-{{indent 4 ~}}          to: config.build.assetsSubDirectory,
-{{indent 4 ~}}          ignore: [{{string '.*'}}],
+{{indent 4 ~}}          from: {{#if_eq lintConfig "go"}}  {{/if_eq}}path.resolve(__dirname, {{string '../static'}}),
+{{indent 4 ~}}          to: {{#if_eq lintConfig "go"}}    {{/if_eq}}config.build.assetsSubDirectory,
+{{indent 4 ~}}          ignore: {{#if_eq lintConfig "go"}}{{/if_eq}}[{{string '.*'}}],
 {{indent 3 ~}}        },
 {{indent 2 ~}}      ]),
 {{indent 1 ~}}    ],
@@ -104,15 +104,15 @@ var OptimizeCSSPlugin = require({{string 'optimize-css-assets-webpack-plugin'}})
 
 {{indent 1 ~}}    webpackConfig.plugins.push(
 {{indent 2 ~}}      new CompressionWebpackPlugin({
-{{indent 3 ~}}        asset: {{string '[path].gz[query]'}},
-{{indent 3 ~}}        algorithm: {{string 'gzip'}},
-{{indent 3 ~}}        test: new RegExp(
+{{indent 3 ~}}        asset: {{#if_eq lintConfig "go"}}    {{/if_eq}}{{string '[path].gz[query]'}},
+{{indent 3 ~}}        algorithm: {{#if_eq lintConfig "go"}}{{/if_eq}}{{string 'gzip'}},
+{{indent 3 ~}}        test: {{#if_eq lintConfig "go"}}     {{/if_eq}}new RegExp(
 {{indent 4 ~}}          {{string '\\.('}} +
 {{indent 4 ~}}          config.build.productionGzipExtensions.join({{string '|'}}) +
 {{indent 4 ~}}          {{string ')$'}}
 {{indent 3 ~}}        ),
 {{indent 3 ~}}        threshold: 10240,
-{{indent 3 ~}}        minRatio: 0.8,
+{{indent 3 ~}}        minRatio: {{#if_eq lintConfig "go"}} {{/if_eq}}0.8,
 {{indent 2 ~}}      })
 {{indent 1 ~}}    ){{semi}}
 {{indent 0 ~}}  }

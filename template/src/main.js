@@ -12,15 +12,15 @@ Vue.config.productionTip = false{{semi}}
 
 /* eslint-disable no-new */
 {{indent 0 ~}}  new Vue({
-{{indent 1 ~}}    el: {{string '#app'}},
+{{indent 1 ~}}    el: {{#if_eq lintConfig "go"}}    {{#if_eq build "standalone"}}    {{/if_eq}}{{/if_eq}}{{string '#app'}},
   {{#router}}
 {{indent 1 ~}}    router,
   {{/router}}
   {{#if_eq build "runtime"}}
-{{indent 1 ~}}    render: h => h(App),
+{{indent 1 ~}}    render: {{#if_eq lintConfig "go"}}{{/if_eq}}h => h(App),
   {{/if_eq}}
   {{#if_eq build "standalone"}}
-{{indent 1 ~}}    template: {{string '<App/>'}},
-{{indent 1 ~}}    components: { App },
+{{indent 1 ~}}    template: {{#if_eq lintConfig "go"}}  {{/if_eq}}{{string '<App/>'}},
+{{indent 1 ~}}    components: {{#if_eq lintConfig "go"}}{{/if_eq}}{ App },
   {{/if_eq}}
 {{indent 0 ~}}  }){{semi}}

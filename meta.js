@@ -20,9 +20,9 @@ module.exports = {
     },
     "string": function(s) {
       if (this.lintConfig === 'go') {
-        return '"' + s.replace('"', '\\"') + '"';
+        return '"' + s.replace(/"/g, '\\"') + '"';
       }
-      return '\'' + s.replace("'", "\\'") + '\'';
+      return '\'' + s.replace(/'/g, "\\'") + '\'';
     },
   },
   "prompts": {

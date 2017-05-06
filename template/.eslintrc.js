@@ -1,8 +1,8 @@
 // http://eslint.org/docs/user-guide/configuring
 
 {{indent 0 ~}}  module.exports = {
-{{indent 1 ~}}    root: true,
-{{indent 1 ~}}    parser: {{string 'babel-eslint'}},
+{{indent 1 ~}}    root: {{#if_eq lintConfig "go"}}         {{/if_eq}}true,
+{{indent 1 ~}}    parser: {{#if_eq lintConfig "go"}}       {{/if_eq}}{{string 'babel-eslint'}},
 {{indent 1 ~}}    parserOptions: {
 {{indent 2 ~}}      sourceType: {{string 'module'}},
 {{indent 1 ~}}    },
@@ -35,7 +35,7 @@
                     {{#unless_eq lintConfig "none"}}
 {{indent 2 ~}}      // don't require .vue extension when importing
 {{indent 2 ~}}      {{string 'import/extensions'}}: [{{string 'error'}}, {{string 'always'}}, {
-{{indent 3 ~}}        js: {{string 'never'}},
+{{indent 3 ~}}        js: {{#if_eq lintConfig "go"}} {{/if_eq}}{{string 'never'}},
 {{indent 3 ~}}        vue: {{string 'never'}},
 {{indent 2 ~}}      }],
 {{indent 2 ~}}      // allow optionalDependencies
@@ -49,7 +49,7 @@
 {{indent 2 ~}}      }],
                     {{/unless_eq}}
 {{indent 2 ~}}      // allow debugger and console during development
-{{indent 2 ~}}      {{string 'no-console'}}: process.env.NODE_ENV === {{string 'production'}} ? {{string 'warn'}} : {{string 'off'}},
+{{indent 2 ~}}      {{string 'no-console'}}: {{#if_eq lintConfig "go"}} {{/if_eq}}process.env.NODE_ENV === {{string 'production'}} ? {{string 'warn'}} : {{string 'off'}},
 {{indent 2 ~}}      {{string 'no-debugger'}}: process.env.NODE_ENV === {{string 'production'}} ? 2 : 0,
 {{indent 1 ~}}    },
 {{indent 0 ~}}  }{{semi}}

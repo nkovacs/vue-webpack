@@ -23,11 +23,11 @@ spinner.start(){{semi}}
 {{indent 3 ~}}        throw err{{semi}}
 {{indent 2 ~}}      }
 {{indent 2 ~}}      process.stdout.write(stats.toString({
-{{indent 3 ~}}        colors: true,
-{{indent 3 ~}}        modules: false,
-{{indent 3 ~}}        children: false,
-{{indent 3 ~}}        chunks: false,
-{{indent 3 ~}}        chunkModules: false,
+{{indent 3 ~}}        colors: {{#if_eq lintConfig "go"}}      {{/if_eq}}true,
+{{indent 3 ~}}        modules: {{#if_eq lintConfig "go"}}     {{/if_eq}}false,
+{{indent 3 ~}}        children: {{#if_eq lintConfig "go"}}    {{/if_eq}}false,
+{{indent 3 ~}}        chunks: {{#if_eq lintConfig "go"}}      {{/if_eq}}false,
+{{indent 3 ~}}        chunkModules: {{#if_eq lintConfig "go"}}{{/if_eq}}false,
 {{indent 2 ~}}      }) + {{string '\n\n'}}){{semi}}
 
 {{indent 2 ~}}      console.log(chalk.cyan({{string '  Build complete.\n'}})){{semi}}

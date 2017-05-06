@@ -26,8 +26,8 @@ var app = express(){{semi}}
 var compiler = webpack(webpackConfig){{semi}}
 
 {{indent 0 ~}}  var devMiddleware = require({{string 'webpack-dev-middleware'}})(compiler, {
-{{indent 1 ~}}    publicPath: webpackConfig.output.publicPath,
-{{indent 1 ~}}    quiet: true,
+{{indent 1 ~}}    publicPath: {{#if_eq lintConfig "go"}}{{/if_eq}}webpackConfig.output.publicPath,
+{{indent 1 ~}}    quiet: {{#if_eq lintConfig "go"}}     {{/if_eq}}true,
 {{indent 0 ~}}  }){{semi}}
 
 {{indent 0 ~}}  var hotMiddleware = require({{string 'webpack-hot-middleware'}})(compiler, {

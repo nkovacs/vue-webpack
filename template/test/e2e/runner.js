@@ -31,6 +31,6 @@ var spawn = require({{string 'cross-spawn'}}){{semi}}
 {{indent 2 ~}}      throw err{{semi}}
 {{indent 1 ~}}    }){{semi}}
 {{indent 0 ~}}  }).catch((err) => {
-{{indent 1 ~}}    console.error({{string 'Failed to start server'}}, err);
-{{indent 1 ~}}    process.exit(1);
+{{indent 1 ~}}    console.error({{string 'Failed to start server'}}, err){{semi}}
+{{indent 1 ~}}    process.exit(1){{semi}}
 {{indent 0 ~}}  }){{semi}}

@@ -10,17 +10,17 @@ var childProcess = require({{string 'child_process'}}){{semi}}
 
 {{indent 0 ~}}  var versionRequirements = [
 {{indent 1 ~}}    {
-{{indent 2 ~}}      name: {{string 'node'}},
-{{indent 2 ~}}      currentVersion: semver.clean(process.version),
-{{indent 2 ~}}      versionRequirement: packageConfig.engines.node,
+{{indent 2 ~}}      name: {{#if_eq lintConfig "go"}}              {{/if_eq}}{{string 'node'}},
+{{indent 2 ~}}      currentVersion: {{#if_eq lintConfig "go"}}    {{/if_eq}}semver.clean(process.version),
+{{indent 2 ~}}      versionRequirement: {{#if_eq lintConfig "go"}}{{/if_eq}}packageConfig.engines.node,
 {{indent 1 ~}}    },
 {{indent 0 ~}}  ]{{semi}}
 
 {{indent 0 ~}}  if (shell.which({{string 'npm'}})) {
 {{indent 1 ~}}    versionRequirements.push({
-{{indent 2 ~}}      name: {{string 'npm'}},
-{{indent 2 ~}}      currentVersion: exec({{string 'npm --version'}}),
-{{indent 2 ~}}      versionRequirement: packageConfig.engines.npm,
+{{indent 2 ~}}      name: {{#if_eq lintConfig "go"}}              {{/if_eq}}{{string 'npm'}},
+{{indent 2 ~}}      currentVersion: {{#if_eq lintConfig "go"}}    {{/if_eq}}exec({{string 'npm --version'}}),
+{{indent 2 ~}}      versionRequirement: {{#if_eq lintConfig "go"}}{{/if_eq}}packageConfig.engines.npm,
 {{indent 1 ~}}    }){{semi}}
 {{indent 0 ~}}  }
 

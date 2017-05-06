@@ -28,7 +28,7 @@ var FriendlyErrorsPlugin = require({{string 'friendly-errors-webpack-plugin'}}){
 {{indent 2 ~}}      new HtmlWebpackPlugin({
 {{indent 3 ~}}        filename: {{string 'index.html'}},
 {{indent 3 ~}}        template: {{string 'index.html'}},
-{{indent 3 ~}}        inject: true,
+{{indent 3 ~}}        inject: {{#if_eq lintConfig "go"}}  {{/if_eq}}true,
 {{indent 2 ~}}      }),
 {{indent 2 ~}}      new FriendlyErrorsPlugin(),
 {{indent 1 ~}}    ],

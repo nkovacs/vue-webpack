@@ -11,8 +11,8 @@ var testEnv = require({{string '../config/test.env'}}){{semi}}
 {{indent 1 ~}}    module: {
 {{indent 2 ~}}      rules: utils.styleLoaders(),
 {{indent 1 ~}}    },
-{{indent 1 ~}}    devtool: '#inline-source-map',
-{{indent 1 ~}}    resolveLoader: {
+{{indent 1 ~}}    devtool: {{#if_eq lintConfig "go"}}      {{/if_eq}}{{string '#inline-source-map'}},
+{{indent 1 ~}}    resolveLoader: {{#if_eq lintConfig "go"}}{{/if_eq}}{
 {{indent 2 ~}}      alias: {
 {{indent 3 ~}}        // necessary to to make lang="scss" work in test when using vue-loader's ?inject option
 {{indent 3 ~}}        // see discussion at https://github.com/vuejs/vue-loader/issues/724
