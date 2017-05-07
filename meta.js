@@ -29,20 +29,24 @@ module.exports = {
     "name": {
       "type": "string",
       "required": true,
+      "override": process.env.VUE_NAME,
       "message": "Project name"
     },
     "description": {
       "type": "string",
       "required": false,
+      "override": process.env.VUE_DESCRIPTION,
       "message": "Project description",
       "default": "A Vue.js project"
     },
     "author": {
       "type": "string",
+      "override": process.env.VUE_AUTHOR,
       "message": "Author"
     },
     "build": {
       "type": "list",
+      "override": process.env.VUE_BUILD,
       "message": "Vue build",
       "choices": [
         {
@@ -59,15 +63,18 @@ module.exports = {
     },
     "router": {
       "type": "confirm",
+      "override": process.env.VUE_ROUTER === undefined ? undefined : (process.env.VUE_ROUTER === 'y'),
       "message": "Install vue-router?"
     },
     "lint": {
       "type": "confirm",
+      "override": process.env.VUE_LINT === undefined ? undefined : (process.env.VUE_LINT === 'y'),
       "message": "Use ESLint to lint your code?"
     },
     "lintConfig": {
       "when": "lint",
       "type": "list",
+      "override": process.env.VUE_LINTCONFIG,
       "message": "Pick an ESLint preset",
       "choices": [
         {
@@ -89,10 +96,12 @@ module.exports = {
     },
     "unit": {
       "type": "confirm",
+      "override": process.env.VUE_UNIT === undefined ? undefined : (process.env.VUE_UNIT === 'y'),
       "message": "Setup unit tests with Karma + Mocha?"
     },
     "e2e": {
       "type": "confirm",
+      "override": process.env.VUE_E2E === undefined ? undefined : (process.env.VUE_E2E === 'y'),
       "message": "Setup e2e tests with Nightwatch?"
     }
   },
