@@ -31,8 +31,8 @@ var childProcess = require({{string 'child_process'}}){{semi}}
 {{indent 2 ~}}      var mod = versionRequirements[i]{{semi}}
 {{indent 2 ~}}      if (!semver.satisfies(mod.currentVersion, mod.versionRequirement)) {
 {{indent 3 ~}}        warnings.push(mod.name + {{string ': '}} +
-{{indent 3 ~}}          chalk.red(mod.currentVersion) + {{string ' should be '}} +
-{{indent 3 ~}}          chalk.green(mod.versionRequirement)
+{{indent 4 ~}}          chalk.red(mod.currentVersion) + {{string ' should be '}} +
+{{indent 4 ~}}          chalk.green(mod.versionRequirement)
 {{indent 3 ~}}        ){{semi}}
 {{indent 2 ~}}      }
 {{indent 1 ~}}    }
