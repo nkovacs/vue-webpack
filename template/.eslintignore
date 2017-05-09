@@ -1,5 +1,6 @@
 # Don't ignore .eslintrc.js and .postcssrc.js. They are ignored by default.
 !.eslintrc*.js
 !.postcssrc.js
-test/unit/coverage
-test/e2e/reports
+/test/unit/coverage
+/test/e2e/reports
+/dist
