@@ -15,8 +15,12 @@ var spawn = require({{string 'cross-spawn'}}){{semi}}
 {{indent 1 ~}}    if (opts.indexOf({{string '--config'}}) === -1) {
 {{indent 2 ~}}      opts = opts.concat([{{string '--config'}}, {{string 'test/e2e/nightwatch.conf.js'}}]){{semi}}
 {{indent 1 ~}}    }
+{{indent 1 ~}}    var defaultEnv = {{string 'chrome'}}{{semi}}
+{{indent 1 ~}}    if (process.env.E2E_ENV !== undefined) {
+{{indent 2 ~}}      defaultEnv = process.env.E2E_ENV{{semi}}
+{{indent 1 ~}}    }
 {{indent 1 ~}}    if (opts.indexOf({{string '--env'}}) === -1) {
-{{indent 2 ~}}      opts = opts.concat([{{string '--env'}}, {{string 'chrome'}}]){{semi}}
+{{indent 2 ~}}      opts = opts.concat([{{string '--env'}}, defaultEnv]){{semi}}
 {{indent 1 ~}}    }
 
 {{indent 1 ~}}    var runner = spawn({{string './node_modules/.bin/nightwatch'}}, opts, { stdio: {{string 'inherit'}} }){{semi}}

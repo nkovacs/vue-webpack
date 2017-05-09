@@ -78,10 +78,13 @@
     "sinon-chai": "^2.8.0",
     "inject-loader": "^3.0.0",
     "babel-plugin-istanbul": "^4.1.1",
-    "phantomjs-prebuilt": "^2.1.14",
     {{/unit}}
+    {{#if_or unit e2e}}
+    "phantomjs-prebuilt": "^2.1.14",
+    {{/if_or}}
     {{#e2e}}
     "chromedriver": "^2.27.2",
+    "geckodriver": "^1.6.1",
     "cross-spawn": "^5.0.1",
     "nightwatch": "^0.9.12",
     "selenium-server": "^3.0.1",
