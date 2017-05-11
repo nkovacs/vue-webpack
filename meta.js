@@ -18,6 +18,9 @@ module.exports = {
       var indent = this.lintConfig === 'go' ? '\t' : '    ';
       return indent.repeat(count);
     },
+    "indentstyle": function() {
+        return this.lintConfig === 'go' ? 'tab' : 'space';
+    },
     "string": function(s) {
       if (this.lintConfig === 'go') {
         return '"' + s.replace(/"/g, '\\"') + '"';
